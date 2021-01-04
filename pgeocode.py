@@ -69,6 +69,7 @@ COUNTRIES_VALID = [
     "FO",
     "FR",
     "GB",
+    "GB_full"
     "GF",
     "GG",
     "GL",
@@ -100,6 +101,7 @@ COUNTRIES_VALID = [
     "MY",
     "NC",
     "NL",
+    "NL_full",
     "NO",
     "NZ",
     "PH",
@@ -190,7 +192,7 @@ class Nominatim:
 
     def __init__(self, country: str = "fr", unique: bool = True):
 
-        country = country.upper()
+        country = country.replace(country[0:2],country[0:2].upper())
         if country not in COUNTRIES_VALID:
             raise ValueError(
                 (
@@ -302,6 +304,8 @@ class Nominatim:
 
         if not isinstance(codes, pd.DataFrame):
             codes = pd.DataFrame(codes, columns=["postal_code"])
+
+        #print(self._data_frame.head(n=5).to_string())
 
         codes = self._normalize_postal_code(codes)
         response = pd.merge(
