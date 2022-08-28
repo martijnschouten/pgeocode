@@ -140,11 +140,12 @@ def _open_extract_url(url: str, country: str) -> Any:
 
     Returns the opened file object.
     """
+    country = country.replace(country[0:2],country[0:2].upper())
     with urllib.request.urlopen(url) as res:
         with BytesIO(res.read()) as reader:
             if url.endswith(".zip"):
                 with ZipFile(reader) as fh_zip:
-                    with fh_zip.open(country.upper() + ".txt") as fh:
+                    with fh_zip.open(country + ".txt") as fh:
                         yield fh
             else:
                 yield reader
