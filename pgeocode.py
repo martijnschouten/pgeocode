@@ -69,7 +69,7 @@ COUNTRIES_VALID = [
     "FO",
     "FR",
     "GB",
-    "GB_full"
+    "GB_full",
     "GF",
     "GG",
     "GL",
