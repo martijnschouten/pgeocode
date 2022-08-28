@@ -23,6 +23,7 @@ STORAGE_DIR = os.environ.get(
 # be used.
 DOWNLOAD_URL = [
     "https://download.geonames.org/export/zip/{country}.zip",
+    "https://download.geonames.org/export/zip/{country}.csv.zip",
     "https://symerio.github.io/postal-codes-data/data/geonames/{country}.txt",
 ]
 
@@ -69,7 +70,7 @@ COUNTRIES_VALID = [
     "FO",
     "FR",
     "GB",
-    "GB_full.csv",
+    "GB_full",
     "GF",
     "GG",
     "GL",
@@ -101,7 +102,7 @@ COUNTRIES_VALID = [
     "MY",
     "NC",
     "NL",
-    "NL_full.csv",
+    "NL_full",
     "NO",
     "NZ",
     "PH",
