@@ -23,6 +23,7 @@ STORAGE_DIR = os.environ.get(
 # be used.
 DOWNLOAD_URL = [
     "https://download.geonames.org/export/zip/{country}.zip",
+    "https://download.geonames.org/export/zip/{country}.csv.zip",
     "https://symerio.github.io/postal-codes-data/data/geonames/{country}.txt",
 ]
 
@@ -69,7 +70,7 @@ COUNTRIES_VALID = [
     "FO",
     "FR",
     "GB",
-    "GB_full"
+    "GB_full",
     "GF",
     "GG",
     "GL",
@@ -139,11 +140,12 @@ def _open_extract_url(url: str, country: str) -> Any:
 
     Returns the opened file object.
     """
+    country = country.replace(country[0:2],country[0:2].upper())
     with urllib.request.urlopen(url) as res:
         with BytesIO(res.read()) as reader:
             if url.endswith(".zip"):
                 with ZipFile(reader) as fh_zip:
-                    with fh_zip.open(country.upper() + ".txt") as fh:
+                    with fh_zip.open(country + ".txt") as fh:
                         yield fh
             else:
                 yield reader
